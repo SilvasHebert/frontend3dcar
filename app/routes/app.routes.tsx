@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
@@ -8,10 +8,16 @@ import {AppStackParamList} from '../types/routes';
 
 const Stack = createNativeStackNavigator<AppStackParamList>();
 
-export function AppStack() {
+export function AppRoutes() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="CoursesSelection">
+      <Stack.Navigator
+        initialRouteName="CoursesSelection"
+        screenOptions={{
+          headerShown: false,
+          gestureEnabled: true,
+          gestureDirection: 'horizontal',
+        }}>
         <Stack.Screen name="CoursesSelection" component={CoursesSelection} />
         <Stack.Screen name="FollowCourse" component={FollowCourse} />
       </Stack.Navigator>

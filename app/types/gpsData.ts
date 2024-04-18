@@ -1,6 +1,16 @@
+export type Gps = {
+  longitude: number;
+  latitude: number;
+  acquisition_time_unix: number;
+  speed: number;
+  direction: number;
+  acquisition_time: string;
+  address?: string;
+};
+
 export type Course = {
-  start_at: Date;
-  end_at: Date;
+  start_at: string;
+  end_at: string;
   distance: number;
   speed_max: number;
   stops: number;
@@ -8,17 +18,7 @@ export type Course = {
   gps_count: number;
   duration: number;
   speed_avg: number;
-  gps: [
-    {
-      longitude: number;
-      latitude: number;
-      acquisition_time_unix: Date;
-      speed: number;
-      direction: number;
-      acquisition_time: Date;
-      address: string;
-    },
-  ];
+  gps: Gps[];
 };
 
 export type FullCourse = {
