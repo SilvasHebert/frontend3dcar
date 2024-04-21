@@ -1,7 +1,9 @@
 import React from 'react';
 
-import {AppStack} from './app/routes/AppStack';
+import './app/configs/i18n';
+
+import {AppRoutes} from './app/routes/app.routes';
 
 export function App() {
-  return <AppStack />;
+  return <AppRoutes />;
 }

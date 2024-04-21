@@ -1,5 +1,7 @@
 {
     "translation": {
-        "CoursesSelectionTitle": "Lista de Percursos"
+        "CoursesSelectionTitle": "Lista de Percursos",
+        "FollowCourseButton": "Seguir Percurso",
+        "FinishedCourseButton": "Voltar ao Início"
     }
 }

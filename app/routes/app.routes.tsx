@@ -1,6 +1,9 @@
 import React from 'react';
+import colors from '@consts/colors';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+
+import 'react-native-gesture-handler';
 
 import {CoursesSelection} from '../screens/CoursesSelection';
 import {FollowCourse} from '../screens/FollowCourse';
@@ -14,12 +17,23 @@ export function AppRoutes() {
       <Stack.Navigator
         initialRouteName="CoursesSelection"
         screenOptions={{
-          headerShown: false,
           gestureEnabled: true,
           gestureDirection: 'horizontal',
+          headerStyle: {
+            backgroundColor: colors.background,
+          },
+          headerTintColor: '#fff',
         }}>
-        <Stack.Screen name="CoursesSelection" component={CoursesSelection} />
-        <Stack.Screen name="FollowCourse" component={FollowCourse} />
+        <Stack.Screen
+          name="CoursesSelection"
+          component={CoursesSelection}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="FollowCourse"
+          component={FollowCourse}
+          options={{title: ''}}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
