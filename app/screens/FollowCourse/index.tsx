@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useRef, useState} from 'react';
 import {useTranslation} from 'react-i18next';
 import {Dimensions, Image, View} from 'react-native';
 import MapView, {MapMarker, Marker, Polyline} from 'react-native-maps';
