@@ -14,16 +14,6 @@ export default StyleSheet.create({
     width: '100%',
     padding: 20,
   },
-  markerContainer: {
-    width: 32,
-    height: 32,
-    overflow: 'hidden',
-  },
-  image: {
-    width: 256,
-    height: 256,
-    position: 'absolute',
-  },
   icon: {
     width: 24,
     height: 24,

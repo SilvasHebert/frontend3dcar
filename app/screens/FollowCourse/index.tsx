@@ -14,6 +14,7 @@ import colors from '@consts/colors';
 
 import {FollowCourseProps} from '../../types/routes';
 
+import {VehiclesSprite} from './components/VehiclesSprite';
 import styles from './styles';
 
 const screen = Dimensions.get('window');
@@ -21,45 +22,33 @@ const screen = Dimensions.get('window');
 export function FollowCourse({route}: FollowCourseProps) {
   const {t} = useTranslation();
 
-  const course = route.params.course.gps;
-  const courseLength = course.length;
+  const COURSE = route.params.course.gps;
+  const COURSE_LEN = COURSE.length;
 
   const ASPECT_RATIO = screen.width / screen.height;
-
-  const firstLatitude = course[0].latitude;
-  const firstLongitude = course[0].longitude;
-  const lastLatitude = course[courseLength - 1].latitude;
-  const lastLongitude = course[courseLength - 1].longitude;
-
   const LATITUDE_DELTA = 0.02;
   const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
+
+  const FIRST_LAT = COURSE[0].latitude;
+  const FIRST_LONG = COURSE[0].longitude;
+  const LAST_LAT = COURSE[COURSE_LEN - 1].latitude;
+  const LAST_LONG = COURSE[COURSE_LEN - 1].longitude;
 
   const markerRef = useRef<MapMarker>(null);
   const mapViewRef = useRef<MapView>(null);
 
   const coordValue = useSharedValue({
-    latitude: firstLatitude,
-    longitude: firstLongitude,
+    latitude: FIRST_LAT,
+    longitude: FIRST_LONG,
   });
 
-  const [carLeftDirection, setCarLeftDirection] = useState(-96);
+  const [direction, setDirection] = useState(0);
   const [courseStatus, setCourseStatus] = useState<
     'finished' | 'coursing' | 'notStarted'
   >('notStarted');
 
-  const carDirections = {
-    forward: -96,
-    forwardRight: -128,
-    right: -164,
-    backRight: -196,
-    back: -222,
-    backLeft: 0,
-    left: -32,
-    forwardLeft: -64,
-  };
-
   const resetCourse = () => {
-    const initCoord = {latitude: firstLatitude, longitude: firstLongitude};
+    const initCoord = {latitude: FIRST_LAT, longitude: FIRST_LONG};
 
     updateMapViewPostition(initCoord, 1000);
     animateMarkerPosition(initCoord, 1000);
@@ -85,10 +74,10 @@ export function FollowCourse({route}: FollowCourseProps) {
     }
   };
 
-  const updateMarkerPosition = (lat: number, lng: number) => {
+  const updateMarkerPosition = (coord: Coord) => {
     if (markerRef && markerRef.current) {
       markerRef.current.setNativeProps({
-        coordinate: {latitude: lat, longitude: lng},
+        coordinate: coord,
       });
     }
   };
@@ -101,49 +90,26 @@ export function FollowCourse({route}: FollowCourseProps) {
 
     setCourseStatus('coursing');
 
-    const coord = course[index];
+    const coord = COURSE[index];
     const duration = coord.speed > 0 ? 100000 / coord.speed : 100;
 
     animateMarkerPosition(coord, duration);
     updateMapViewPostition(coord, duration);
 
     setTimeout(() => {
-      if (coord.direction >= 335 || coord.direction < 20) {
-        setCarLeftDirection(carDirections.forward);
-      } else if (coord.direction >= 20 && coord.direction < 65) {
-        setCarLeftDirection(carDirections.forwardRight);
-      } else if (coord.direction >= 65 && coord.direction < 110) {
-        setCarLeftDirection(carDirections.right);
-      } else if (coord.direction >= 110 && coord.direction < 155) {
-        setCarLeftDirection(carDirections.backRight);
-      } else if (coord.direction >= 155 && coord.direction < 200) {
-        setCarLeftDirection(carDirections.back);
-      } else if (coord.direction >= 200 && coord.direction < 245) {
-        setCarLeftDirection(carDirections.backLeft);
-      } else if (coord.direction >= 245 && coord.direction < 290) {
-        setCarLeftDirection(carDirections.left);
-      } else if (coord.direction >= 290 && coord.direction < 335) {
-        setCarLeftDirection(carDirections.forwardLeft);
-      }
-
+      setDirection(coord.direction);
       moveCarToDestination(index + 1, length);
     }, duration);
   };
 
   useDerivedValue(() => {
     if (coordValue.value) {
-      runOnJS(updateMarkerPosition)(
-        coordValue.value.latitude,
-        coordValue.value.longitude,
-      );
+      runOnJS(updateMarkerPosition)({
+        latitude: coordValue.value.latitude,
+        longitude: coordValue.value.longitude,
+      });
     }
   }, [coordValue]);
-
-  useEffect(() => {
-    if (courseStatus === 'notStarted') {
-      resetCourse();
-    }
-  }, [courseStatus]);
 
   return (
     <View style={styles.container}>
@@ -151,29 +117,24 @@ export function FollowCourse({route}: FollowCourseProps) {
         ref={mapViewRef}
         style={styles.map}
         initialRegion={{
-          latitude: firstLatitude,
-          longitude: firstLongitude,
+          latitude: FIRST_LAT,
+          longitude: FIRST_LONG,
           latitudeDelta: LATITUDE_DELTA,
           longitudeDelta: LONGITUDE_DELTA,
         }}>
         <Marker
           ref={markerRef}
           coordinate={{
-            latitude: firstLatitude,
-            longitude: firstLongitude,
+            latitude: FIRST_LAT,
+            longitude: FIRST_LONG,
           }}>
-          <View style={styles.markerContainer}>
-            <Image
-              source={require('@assets/images/vehiclesSprite.png')}
-              style={[styles.image, {left: carLeftDirection}]}
-            />
-          </View>
+          <VehiclesSprite direction={direction} />
         </Marker>
 
         <Marker
           coordinate={{
-            latitude: firstLatitude,
-            longitude: firstLongitude,
+            latitude: FIRST_LAT,
+            longitude: FIRST_LONG,
           }}>
           <View style={styles.iconContainer}>
             <Image
@@ -185,8 +146,8 @@ export function FollowCourse({route}: FollowCourseProps) {
 
         <Marker
           coordinate={{
-            latitude: lastLatitude,
-            longitude: lastLongitude,
+            latitude: LAST_LAT,
+            longitude: LAST_LONG,
           }}>
           <View style={styles.iconContainer}>
             <Image
@@ -197,7 +158,7 @@ export function FollowCourse({route}: FollowCourseProps) {
         </Marker>
 
         <Polyline
-          coordinates={course}
+          coordinates={COURSE}
           strokeWidth={3}
           strokeColor={colors.primary}
         />
@@ -207,7 +168,7 @@ export function FollowCourse({route}: FollowCourseProps) {
           onPress={() =>
             courseStatus === 'finished'
               ? resetCourse()
-              : moveCarToDestination(0, courseLength)
+              : moveCarToDestination(0, COURSE_LEN)
           }
           disabled={courseStatus === 'coursing'}>
           {courseStatus === 'finished'
