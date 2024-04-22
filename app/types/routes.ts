@@ -1,4 +1,4 @@
-import {NavigationProp} from '@react-navigation/native';
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
 
 import {Course} from './gpsData';
 
@@ -7,12 +7,12 @@ export type AppStackParamList = {
   FollowCourse: {course: Course};
 };
 
-export type FollowCourseProps = NavigationProp<
-  AppStackParamList,
-  'FollowCourse'
->;
-
-export type CoursesSelectionProps = NavigationProp<
+export type CoursesSelectionProps = NativeStackScreenProps<
   AppStackParamList,
   'CoursesSelection'
+>;
+
+export type FollowCourseProps = NativeStackScreenProps<
+  AppStackParamList,
+  'FollowCourse'
 >;

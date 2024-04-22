@@ -1,3 +1,13 @@
+export type Coord = {
+  latitude: number;
+  longitude: number;
+};
+
+export type Region = Coord & {
+  latitudeDelta: number;
+  longitudeDelta: number;
+};
+
 export type Gps = {
   longitude: number;
   latitude: number;

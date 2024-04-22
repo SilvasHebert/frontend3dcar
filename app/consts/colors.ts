@@ -1,4 +1,6 @@
 export default {
+  primary: '#00B37E',
+
   white: '#FFFFFF',
   fadeText: '#C4C4CC',
   line: '#7C7C8A',

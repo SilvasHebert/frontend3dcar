@@ -1,7 +1,14 @@
 import React from 'react';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
 
-import {AppStack} from './app/routes/AppStack';
+import './app/configs/i18n';
+
+import {AppRoutes} from './app/routes/app.routes';
 
 export function App() {
-  return <AppStack />;
+  return (
+    <SafeAreaProvider>
+      <AppRoutes />
+    </SafeAreaProvider>
+  );
 }
