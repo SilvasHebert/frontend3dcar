@@ -157,6 +157,20 @@ export function FollowCourse({route}: FollowCourseProps) {
           longitudeDelta: LONGITUDE_DELTA,
         }}>
         <Marker
+          ref={markerRef}
+          coordinate={{
+            latitude: firstLatitude,
+            longitude: firstLongitude,
+          }}>
+          <View style={styles.markerContainer}>
+            <Image
+              source={require('@assets/images/vehiclesSprite.png')}
+              style={[styles.image, {left: carLeftDirection}]}
+            />
+          </View>
+        </Marker>
+
+        <Marker
           coordinate={{
             latitude: firstLatitude,
             longitude: firstLongitude,
@@ -178,20 +192,6 @@ export function FollowCourse({route}: FollowCourseProps) {
             <Image
               source={require('@assets/images/flagIcon.png')}
               style={styles.icon}
-            />
-          </View>
-        </Marker>
-
-        <Marker
-          ref={markerRef}
-          coordinate={{
-            latitude: firstLatitude,
-            longitude: firstLongitude,
-          }}>
-          <View style={styles.markerContainer}>
-            <Image
-              source={require('@assets/images/vehiclesSprite.png')}
-              style={[styles.image, {left: carLeftDirection}]}
             />
           </View>
         </Marker>

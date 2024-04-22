@@ -17,6 +17,7 @@ export default StyleSheet.create({
   markerContainer: {
     width: 32,
     height: 32,
+    overflow: 'hidden',
   },
   image: {
     width: 256,

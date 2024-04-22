@@ -9,9 +9,9 @@
 - (BOOL)application:(UIApplication *)application
     didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
-  [GMSServices provideAPIKey:@"AIzaSyAF5D9-gErY_58KHPqfhiEMX2Zjeh4bDZw"]
+  [GMSServices provideAPIKey:@"AIzaSyAF5D9-gErY_58KHPqfhiEMX2Zjeh4bDZw"];
 
-      self.moduleName = @"frontend3dcar";
+  self.moduleName = @"frontend3dcar";
   // You can add your custom initial props in the dictionary below.
   // They will be passed down to the ViewController used by React Native.
   self.initialProps = @{};
