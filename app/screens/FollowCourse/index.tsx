@@ -128,7 +128,7 @@ export function FollowCourse({route}: FollowCourseProps) {
             latitude: FIRST_LAT,
             longitude: FIRST_LONG,
           }}>
-          <VehiclesSprite direction={direction} />
+          <VehiclesSprite direction={direction} carType="type5" />
         </Marker>
 
         <Marker

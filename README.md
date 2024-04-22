@@ -18,7 +18,7 @@
 - react-native-reanimated:
   Usada para as animações do veiculo no mapa
 
-  **Estrutura Baseada no Tipo do Arquivo**:
+**Estrutura Baseada no Tipo do Arquivo**:
 
       app/
       |-- assets/
