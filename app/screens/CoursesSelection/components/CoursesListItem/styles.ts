@@ -10,8 +10,8 @@ export default StyleSheet.create({
   },
   line: {
     width: 2,
-    height: 32,
-    marginLeft: 22,
+    height: 54,
+    marginLeft: 26,
     backgroundColor: colors.line,
   },
 });

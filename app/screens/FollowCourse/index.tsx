@@ -34,6 +34,8 @@ export function FollowCourse({route}: FollowCourseProps) {
   const LAST_LAT = COURSE[COURSE_LEN - 1].latitude;
   const LAST_LONG = COURSE[COURSE_LEN - 1].longitude;
 
+  const BASE_CAR_SPEED = 100000;
+
   const markerRef = useRef<MapMarker>(null);
   const mapViewRef = useRef<MapView>(null);
 
@@ -91,7 +93,7 @@ export function FollowCourse({route}: FollowCourseProps) {
     setCourseStatus('coursing');
 
     const coord = COURSE[index];
-    const duration = coord.speed > 0 ? 100000 / coord.speed : 100;
+    const duration = coord.speed > 0 ? BASE_CAR_SPEED / coord.speed : 100;
 
     animateMarkerPosition(coord, duration);
     updateMapViewPostition(coord, duration);
@@ -128,7 +130,7 @@ export function FollowCourse({route}: FollowCourseProps) {
             latitude: FIRST_LAT,
             longitude: FIRST_LONG,
           }}>
-          <VehiclesSprite direction={direction} carType="type5" />
+          <VehiclesSprite direction={direction} carType="type6" />
         </Marker>
 
         <Marker
