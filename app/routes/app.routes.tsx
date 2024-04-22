@@ -16,7 +16,10 @@ const Stack = createNativeStackNavigator<AppStackParamList>();
 export function AppRoutes() {
   return (
     <SafeArea>
-      <StatusBar backgroundColor={colors.card} barStyle={'light-content'} />
+      <StatusBar
+        backgroundColor={colors.background}
+        barStyle={'light-content'}
+      />
 
       <NavigationContainer>
         <Stack.Navigator
