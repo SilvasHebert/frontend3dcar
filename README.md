@@ -1,79 +1,68 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+**Bibliotecas utilizadas:**
 
-# Getting Started
+- @react-navigation/native, @react-navigation/native-stack, react-native-screens react-native-safe-area-context:
+  Usada para navegação entre as telas
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+- i18next, react-i18next:
+  Usada para internacionalizar os textos
 
-## Step 1: Start the Metro Server
+- react-native-maps:
+  Usada para o mapa
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
+- babel-plugin-module-resolver:
+  Usada para definir import de modules custom como @components
 
-To start Metro, run the following command from the _root_ of your React Native project:
+- eslint-plugin-simple-import-sort:
+  Usada para sortear os import
 
-```bash
-# using npm
-npm start
+- react-native-reanimated:
+  Usada para as animações do veiculo no mapa
 
-# OR using Yarn
-yarn start
-```
+  **Estrutura Baseada no Tipo do Arquivo**:
 
-## Step 2: Start your Application
-
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
-
-### For Android
-
-```bash
-# using npm
-npm run android
-
-# OR using Yarn
-yarn android
-```
-
-### For iOS
-
-```bash
-# using npm
-npm run ios
-
-# OR using Yarn
-yarn ios
-```
-
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
-
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
-
-## Step 3: Modifying your App
-
-Now that you have successfully run the app, let's modify it.
-
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
-
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+      app/
+      |-- assets/
+      | |-- Images/
+      | | |-- carIcon.png
+      | | |-- flagIcon.png
+      | | |-- vehiclesSprite.png
+      |-- components/
+      | |-- Button/
+      | | |-- index.tsx
+      | | |-- styles.ts
+      | |-- SafeArea/
+      | | |-- index.tsx
+      | | |-- styles.ts
+      |-- configs/
+      | |-- i18n.ts
+      |-- consts/
+      | |-- colors.ts
+      | data/
+      | |-- sources/
+      | | |-- local/
+      | | | |-- gpsData.json
+      |-- screens/
+      | |-- CoursesSelection/
+      | | |-- index.tsx
+      | | |-- styles.ts
+      | | |-- components/
+      | | | |-- CoursesListItem/
+      | | | | |-- index.tsx
+      | | | | |-- styles.ts
+      | | | | |-- CourseInfo/
+      | | | | | |-- index.tsx
+      | | | | | |-- styles.ts
+      | |-- FollowCourse/
+      | | |-- index.tsx
+      | | |-- styles.ts
+      | | |-- components/
+      | | | |-- VehiclesSprite/
+      | | | | |-- index.tsx
+      | | | | |-- styles.tsx
+      |-- routes/
+      | |-- app.routes.tsx
+      |-- translations/
+      | |-- pt.json
+      |-- types/
+      | |-- routes.ts
+      | |-- gpsData.ts
