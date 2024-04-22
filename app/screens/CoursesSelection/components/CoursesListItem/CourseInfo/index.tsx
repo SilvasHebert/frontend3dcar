@@ -19,7 +19,7 @@ export function CourseInfo({
         <Image style={styles.icon} source={icon} />
       </View>
       <View style={styles.infoContainer}>
-        <Text style={styles.text} numberOfLines={1}>
+        <Text style={styles.text} numberOfLines={2}>
           {address}
         </Text>
         <Text style={styles.dateTime}>

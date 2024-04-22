@@ -1,10 +1,22 @@
-**Bibliotecas utilizadas:**
+## Documetação do frontend3dCar
+
+### Telas
+
+- **CoursesSelection:**
+
+Listagem das rotas disponiveis no arquivo data/sources/local/gpsData.json utilizando FlatList.
+
+- **FollowCourse:**
+
+Tela com mapa para visualização da rota com a animação do veiculo.
+A linha foi desenhada usando **PolyLine** do react-native-maps. A animação do veiculo utiliza o react-native-reanimated para move suavemente um custom **Marker** do react-native-maps com a sprite do veiculo.
+
+### Bibliotecas utilizadas
 
 - @react-navigation/native, @react-navigation/native-stack, react-native-screens react-native-safe-area-context:
-  Usada para navegação entre as telas
+  Navegação entre telas
 
-- i18next, react-i18next:
-  Usada para internacionalizar os textos
+- i18next, react-i18next: Internacionalizar os textos
 
 - react-native-maps:
   Usada para o mapa
@@ -18,7 +30,7 @@
 - react-native-reanimated:
   Usada para as animações do veiculo no mapa
 
-**Estrutura Baseada no Tipo do Arquivo**:
+### Estrutura Baseada no Tipo do Arquivo
 
       app/
       |-- assets/

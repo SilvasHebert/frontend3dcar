@@ -4,13 +4,13 @@ import colors from '@consts/colors';
 export default StyleSheet.create({
   button: {
     height: 52,
-    backgroundColor: colors.primary + 'FF',
+    backgroundColor: colors.primary,
     borderRadius: 24,
     justifyContent: 'center',
   },
   buttonDisabled: {
     height: 52,
-    backgroundColor: colors.primary + 'FF',
+    backgroundColor: colors.primary,
     borderRadius: 24,
     justifyContent: 'center',
     opacity: 0.7,
